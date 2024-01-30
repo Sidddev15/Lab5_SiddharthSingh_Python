@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0A2647;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1,
+        h3 {
+            color: #2C74B3;
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            text-align: center;
+        }
+
+        #main {
+            width: 500px;
+            margin: auto;
+            margin-top: 100px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea:active  {
+            color: #fff;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid rgb(255, 255, 255);
+            font-weight: bold;
+            background-color: #0A2647;
+        }
+
+        input:focus-within {
+            background-color: #0A2647;
+        }
+
+        select {
+            background-color: #0A2647;
+            font-weight: 500;
+            width: 100%;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            padding:0 10px;
+            min-height: 30px;
+            margin-bottom: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: rgb(56, 86, 255);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .select-container {
+            display: flex;
+            column-gap: 30px;
+            align-items: center;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(0, 20, 160);
+        }
+
+        #predict {
+            margin-top: 5%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        label {
+            color: rgb(0, 0, 128);
+            font-weight: bold;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="main">
+        <h1>Enter Car Details</h1>
+        <form action="{{ url_for('predict')}}" method="post">
+            <input type="text" label="Name" name="Name" placeholder="Car Name" required>
+            <input type="number" label='age_of_the_car' name="age_of_the_car" placeholder="Age of the Car (Years)"
+                required>
+            <input type="number" label='Present_Price' name="Present_Price" placeholder="Present Price (In Lakhs)"
+                step="0.01" required>
+            <input type="number" label='Kms_Driven' name="Kms_Driven" placeholder="Kms Driven" required>
+            <div class="select-container">
+                <select name="Fuel_Type" id="Fuel_Type" required>
+                    <option value="2">Petrol</option>
+                    <option value="1">Diesel</option>
+                    <option value="0">CNG</option>
+                </select>
+                <select name="Transmission" id="research" required="required">
+                    <option value="1">Manual</option>
+                    <option value="0">Automatic</option>
+                </select>
+            </div>
+            </br>
+            </br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div id="predict">{{prediction_text}}</div>
+</body>
+
+</html>
